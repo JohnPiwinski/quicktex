@@ -37,3 +37,20 @@ function! quicktex#expand#ExpandWord(ft)
     " and jump back if needed.
     return "\<C-g>u".delword.result.jumpBack
 endfunction
+
+function! quicktex#expand#ExpandWordMath(ft)
+    if quicktex#mathmode#InMathMode()
+        let line = strpart(getline('.'), 0, col('.')-1)
+        let word = (line[-1:] == ' ') ? ' ' : split(line, '\s', 1)[-1]
+        let word = split(word, join(g:quicktex_excludechar, '\|'), 1)[-1]
+        let result = get(g:quicktex_math, word, '')
+        if result == ''
+            return get(g:, 'quicktex_trigger', ' ')
+        endif
+        let delword  = repeat("\<BS>", strlen(word))
+        let jumpBack = stridx(result,'<+++>')+1 ? "\<ESC>:call search('<+++>', 'b')\<CR>\"_cf>" : ''
+        return "\<C-g>u".delword.result.jumpBack
+    else
+        return ""
+    endif
+endfunction

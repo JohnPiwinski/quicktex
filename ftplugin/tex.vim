@@ -29,7 +29,6 @@ endif
 " Math Mode Keywords {{{
 
 let g:quicktex_math = {
-\' ' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
 \'Section: Set Theory' : 'COMMENT',
     \'subs'  : 'subseteq ',
     \'nin'   : '\not\in ',
