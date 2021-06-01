@@ -29,7 +29,7 @@ endif
 " Math Mode Keywords {{{
 
 let g:quicktex_math = {
-    \' ' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+\' ' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
 \'Section: Set Theory' : 'COMMENT',
     \'subs'  : 'subseteq ',
     \'nin'   : '\not\in ',
@@ -80,12 +80,12 @@ let g:quicktex_math = {
 \'Section: Functions' : 'COMMENT',
     \'mapsto' : 'mapsto ',
     \'of'     : "<BS>(<+++>) <++>",
-    \'sin'    : 'sin{<+++>} <++>',
-    \'cos'    : 'cos{<+++>} <++>',
-    \'tan'    : 'tan{<+++>} <++>',
-    \'gcd'    : 'gcd(<+++> ,<++>) <++>',
-    \'ln'     : 'ln{<+++>} <++>',
-    \'log'    : 'log{<+++>} <++>',
+    \'sin'    : 'sin(<+++>) <++>',
+    \'cos'    : 'cos(<+++>) <++>',
+    \'tan'    : 'tan(<+++>) <++>',
+    \'gcd'    : 'gcd(<+++>) ,<++>) <++>',
+    \'ln'     : 'ln(<+++>) <++>',
+    \'log'    : 'log(<+++>) <++>',
     \'df'     : '<+++> : <++> to <++>',
     \'sqrt'   : 'sqrt(<+++>) <++>',
     \'case'   : '\begin{cases} <+++> \end{cases} <++>',
@@ -130,8 +130,9 @@ let g:quicktex_math = {
 " LaTeX Mode Keywords {{{
 
 let g:quicktex_tex = {
-    \' ' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
-    \'m' : '\( <+++> \) <++>',
+    \' '   : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+    \'mt'  : '\( <+++> \) <++>',
+    \'mmt' : '\[ <+++> \] <++>',
 \'Section: Environments' : 'COMMENT',
     \'env' : "\<ESC>Bvedi\\begin{\<ESC>pa}\<CR><+++>\<CR>\\end{\<ESC>pa}",
     \'exe' : "\\begin{exercise}{<+++>}\<CR><++>\<CR>\\end{exercise}",

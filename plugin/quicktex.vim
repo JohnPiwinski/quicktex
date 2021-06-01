@@ -21,7 +21,7 @@ function! AssignExpander()
         let trigger = get({' ': '<Space>', '	' : '<Tab>'},
                     \g:quicktex_trigger, g:quicktex_trigger)
     else
-        let trigger = '<Space>'
+        let trigger = '<Tab>'
     endif
 
     " If a dictionary for the filetype exists, then map the ExpandWord
