@@ -28,6 +28,6 @@ function! AssignExpander()
     " function to the trigger.
     if exists('g:quicktex_'.&ft)
         execute('inoremap <silent> <buffer> '.trigger.' <C-r>=quicktex#expand#ExpandWord("'.&ft.'")<CR>')
-        autocmd CursorMovedI * call quicktex#expand#ExpandWordMath(&ft)
+        " autocmd CursorMovedI * call quicktex#expand#ExpandWordMath(&ft)
     endif
 endfunction
