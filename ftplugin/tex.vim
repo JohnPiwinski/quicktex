@@ -29,7 +29,7 @@ endif
 " Math Mode Keywords {{{
 
 let g:quicktex_math = {
-\'\t' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+\'  ' : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
 \'Section: Set Theory' : 'COMMENT',
     \'subs'  : 'subseteq ',
     \'nin'   : '\not\in ',
@@ -130,7 +130,7 @@ let g:quicktex_math = {
 " LaTeX Mode Keywords {{{
 
 let g:quicktex_tex = {
-    \'\t'   : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+    \'  '   : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
     \'mt'  : '\( <+++> \) <++>',
     \'mmt' : '\[ <+++> \] <++>',
 \'Section: Environments' : 'COMMENT',
