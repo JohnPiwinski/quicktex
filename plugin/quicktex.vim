@@ -18,7 +18,7 @@ function! AssignExpander()
     " If the trigger is a special character, then translate it for the
     " mapping. The default value of the trigger is '<Space>'.
     if exists('g:quicktex_trigger')
-        let trigger = get({' ': '<Space>', '	' : '<Tab>'},
+        let trigger = get({' ': '<Space>', '    ' : '<Tab>'},
                     \g:quicktex_trigger, g:quicktex_trigger)
     else
         let trigger = '<Tab>'
@@ -26,8 +26,10 @@ function! AssignExpander()
 
     " If a dictionary for the filetype exists, then map the ExpandWord
     " function to the trigger.
+
     if exists('g:quicktex_'.&ft)
-        " execute('inoremap <silent> <buffer> '.trigger.' <C-r>=quicktex#expand#ExpandWord("'.&ft.'")<CR>')
-        autocmd CursorMovedI * call quicktex#expand#ExpandWord(&ft)
+        execute('inoremap <silent> <buffer> '.trigger.' <C-r>=quicktex#expand#ExpandWord("'.&ft.'")<CR>')
+        echom('inoremap <silent> <buffer> '.trigger.' <C-r>=quicktex#expand#ExpandWord("'.&ft.'")<CR>')
+        autocmd TextChangedI * : call quicktex#expand#AutoExpand()
     endif
 endfunction

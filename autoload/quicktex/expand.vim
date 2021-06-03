@@ -1,4 +1,5 @@
 function! quicktex#expand#ExpandWord(ft)
+    echo "Attempting Expand"
     " Get the current line up to the cursor position
     let line = strpart(getline('.'), 0, col('.')-1)
 
@@ -25,7 +26,8 @@ function! quicktex#expand#ExpandWord(ft)
     " If there is no result found in the dictionary, then return the original
     " trigger key.
     if result == ''
-        return get(g:, 'quicktex_trigger', ' ')
+        call feedkeys("\<ESC>:call search('<+.*+>', 'b')\<CR>\"_c/+>/e\<CR>")
+        return get(g:, 'quicktex_trigger', '')
     endif
 
     " Create a string of backspaces to delete the last word, and also create a
@@ -35,22 +37,33 @@ function! quicktex#expand#ExpandWord(ft)
 
     " Delete the original word, replace it with the result of the dictionary,
     " and jump back if needed.
+    echom("\<C-g>u".delword.result.jumpBack)
     return "\<C-g>u".delword.result.jumpBack
 endfunction
 
-function! quicktex#expand#ExpandWordMath(ft)
+let g:char_counter = 0
+
+function! quicktex#expand#AutoExpand()
+    echom "Expanding Math"
+    g:char_counter ++
+    if g:char_counter % 5 == 0
+        write
+    endif
     if quicktex#mathmode#InMathMode()
         let line = strpart(getline('.'), 0, col('.')-1)
         let word = (line[-1:] == ' ') ? ' ' : split(line, '\s', 1)[-1]
         let word = split(word, join(g:quicktex_excludechar, '\|'), 1)[-1]
         let result = get(g:quicktex_math, word, '')
+        echom word." ".result
         if result == ''
-            return get(g:, 'quicktex_trigger', ' ')
+            echom "Empty result"
+            return ""
         endif
         let delword  = repeat("\<BS>", strlen(word))
         let jumpBack = stridx(result,'<+++>')+1 ? "\<ESC>:call search('<+++>', 'b')\<CR>\"_cf>" : ''
-        return "\<C-g>u".delword.result.jumpBack
-    else
-        return ""
+        echom "Auto Expand: \<C-g>u".delword.result.jumpBack
+        call feedkeys("\<C-g>u".delword.result.jumpBack)
     endif
+    redraw
+    return ""
 endfunction
